@@ -1,0 +1,111 @@
+﻿@model SondageSite.Models.SondageEtOptions
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SondageCreation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <style>
+        #content {
+            border: solid 2px black;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 id='poll-title' class="mt-5 pt-5">Super Sondage</h1>
+                <h3 id='poll-subtitle' class="mb-5">Le meilleur site pour faire des sondages de qualité</h3>
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-9" id="content">
+                <div class="row">
+                    <div class="mb-3 p-2">
+                        Récupérer la question posée dans la base de données ICI : @Model.Sondage.Question
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1">
+                        nb %
+                    </div>
+                    <div class="col-4">
+                        Insérer la Réponse 1 BDD : @Model.Options[0].ReponseTxt
+                    </div>
+                    <div class="col-2">
+                        <img src="http://www.legorafi.fr/wp-content/uploads/2016/05/barre5.jpg" alt="barreReponse1" title="barreReponse1" height="50">
+                    </div>
+                    <div class="col-2">
+                        -- nb votes -- : @Model.Options[0].NbVotes
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-1">
+                        nb %
+                    </div>
+                    <div class="col-4">
+                        Insérer la Réponse 2 BDD : @Model.Options[1].ReponseTxt
+                    </div>
+                    <div class="col-2">
+                        <img src="http://www.legorafi.fr/wp-content/uploads/2016/05/barre5.jpg" alt="barreReponse2" title="barreReponse2" height="50">
+                    </div>
+                    <div class="col-2">
+                        -- nb votes -- : @Model.Options[1].NbVotes
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-1">
+                        nb %
+                    </div>
+                    <div class="col-4">
+                        Insérer la Réponse 3 BDD : @Model.Options[2].ReponseTxt
+                    </div>
+                    <div class="col-2">
+                        <img src="http://www.legorafi.fr/wp-content/uploads/2016/05/barre5.jpg" alt="barreReponse3" title="barreReponse3" height="50">
+                    </div>
+                    <div class="col-2">
+                        -- nb votes -- : @Model.Options[2].NbVotes
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-1">
+                        nb %
+                    </div>
+                    <div class="col-4">
+                        Insérer la Réponse 4 BDD : @Model.Options[3].ReponseTxt
+                    </div>
+                    <div class="col-2">
+                        <img src="../Sondages/arriere-plan.jpg" alt="barreReponse4" title="barreReponse3" height="50">
+                    </div>
+                    <div class="col-2">
+                        -- nb votes -- : @Model.Options[3].NbVotes
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-4 mt-3">
+                        Total : nb votants, nb votes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

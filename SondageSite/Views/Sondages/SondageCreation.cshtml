@@ -1,0 +1,98 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SondageCreation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <style>
+        #content {
+            border: solid 2px black;
+            border-radius: 40px;
+        }
+
+        #backg {
+            background-image: url(../../Content/arriere-plan.jpg);
+            height: 100vh;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="backg">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 id='poll-title' class="mt-5 pt-5">Super Sondage</h1>
+                    <h3 id='poll-subtitle' class="mb-5">Le meilleur site pour faire des sondages de qualité</h3>
+
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-7" id="content">
+                    <form action="@Url.Action("AjoutSondage")" class="p-4" method="get">
+                        <div class="row mb-1">
+                            <div class="col-3 my-1">
+                                Question :
+                            </div>
+                            <div class="col">
+                                <INPUT type="text" name="question" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3 my-1">
+                                Réponse 1 :
+                            </div>
+                            <div class="col">
+                                <INPUT type="text" name="reponse1" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3 my-1">
+                                Réponse 2 :
+                            </div>
+                            <div class="col">
+                                <INPUT type="text" name="reponse2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3 my-1">
+                                Réponse 3 :
+                            </div>
+                            <div class="col">
+                                <INPUT type="text" name="reponse3" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3 my-1">
+                                Réponse 4 :
+                            </div>
+                            <div class="col">
+                                <INPUT type="text" name="reponse4" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group form-check my-4">
+                            <input type="checkbox" class="form-check-input" name="reponseMultiple" value="true">
+                            <label class="form-check-label">Autoriser les réponses multiples</label>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" title='Créer votre sondage' value="CreerSondage">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

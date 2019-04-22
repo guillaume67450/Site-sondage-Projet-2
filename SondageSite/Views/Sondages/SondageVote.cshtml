@@ -1,0 +1,121 @@
+﻿@model SondageSite.Models.SondageEtOptions
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SondageCreation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <style>
+        #content {
+            border: solid 2px black;
+            border-radius: 40px;
+        }
+
+        #backg {
+            background-image: url(../../Content/arriere-plan.jpg);
+            height: 100vh;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="backg">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 id='poll-title' class="mt-5 pt-5">Super Sondage</h1>
+                    <h3 id='poll-subtitle' class="mb-5">Le meilleur site pour faire des sondages de qualité</h3>
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-7" id="content">
+                    <form action="@Url.Action("AjoutVote")" class="p-4" method="get">
+                        <input type="hidden" name="idSondage" value="@Model.Sondage.IdSondage" />
+                        <div class="row">
+                            <div class="mb-3 p-2">
+                                @Model.Sondage.Question
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-check my-1">
+                                @if (Model.Sondage.ChoixMultiple == true)
+                                {
+                                    <input type="checkbox" name="reponse1" class="form-check-input" value="@Model.Options[0].IdOption">
+                                }
+                                else
+                                {
+                                    <input type="radio" name="radioReponse" class="form-check-input" value="@Model.Options[0].IdOption">
+                                }
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="col">
+                                Réponse 1 : @Model.Options[0].ReponseTxt
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-check my-1">
+                                @if (Model.Sondage.ChoixMultiple == true)
+                                {
+                                    <input type="checkbox" name="reponse2" class="form-check-input" value="@Model.Options[1].IdOption">
+                                }
+                                else
+                                {
+                                    <input type="radio" name="radioReponse" class="form-check-input" value="@Model.Options[1].IdOption">
+                                }
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="col">
+                                Réponse 2 : @Model.Options[1].ReponseTxt
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-check my-1">
+                                @if (Model.Sondage.ChoixMultiple == true)
+                                {
+                                    <input type="checkbox" name="reponse3" class="form-check-input" value="@Model.Options[2].IdOption">
+                                }
+                                else
+                                {
+                                    <input type="radio" name="radioReponse" class="form-check-input" value="@Model.Options[2].IdOption">
+                                }
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="col">
+                                Réponse 3 : @Model.Options[2].ReponseTxt
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group form-check mt-1 mb-5">
+                                @if (Model.Sondage.ChoixMultiple == true)
+                                {
+                                    <input type="checkbox" name="reponse4" class="form-check-input" value="@Model.Options[3].IdOption">
+                                }
+                                else
+                                {
+                                    <input type="radio" name="radioReponse" class="form-check-input" value="@Model.Options[3].IdOption">
+                                }
+                                <label class="form-check-label"></label>
+                            </div>
+                            <div class="col">
+                                Réponse 4 : @Model.Options[3].ReponseTxt
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" title='Voter' align center value="Voter">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
