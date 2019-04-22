@@ -178,6 +178,11 @@
     <Content Include="Views\Sondages\SondageCreation.cshtml" />
     <Content Include="Views\Sondages\SondageResultat.cshtml" />
     <Content Include="Views\Sondages\SondageVote.cshtml" />
+    <Content Include="Views\Sondages\SondageCree.cshtml" />
+    <Content Include="Views\Sondages\ErreurCodeSuppression.cshtml" />
+    <Content Include="Views\Sondages\ReussiteSuppression.cshtml" />
+    <Content Include="Views\Sondages\ErreurSondageDesactive.cshtml" />
+    <Content Include="Views\Sondages\ErreurSondageMoinsDe10Caracs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

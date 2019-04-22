@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SondageSite", "SondageSite\SondageSite.csproj", "{A7B8C64E-1B5A-48F8-A17B-ABBC4DAF6C9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SondageSite.Tests", "SondageSite.Tests\SondageSite.Tests.csproj", "{3DC0383A-77D4-4FA1-8F01-0104045F8857}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{A7B8C64E-1B5A-48F8-A17B-ABBC4DAF6C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7B8C64E-1B5A-48F8-A17B-ABBC4DAF6C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7B8C64E-1B5A-48F8-A17B-ABBC4DAF6C9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DC0383A-77D4-4FA1-8F01-0104045F8857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DC0383A-77D4-4FA1-8F01-0104045F8857}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DC0383A-77D4-4FA1-8F01-0104045F8857}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DC0383A-77D4-4FA1-8F01-0104045F8857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

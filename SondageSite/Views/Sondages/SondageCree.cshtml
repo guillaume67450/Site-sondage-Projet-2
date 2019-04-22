@@ -18,6 +18,11 @@
             border-radius: 40px;
         }
 
+        #content2 {
+            margin-left: 21%;
+        }
+
+
         #backg {
             background-image: url(../../Content/background-image.png);
             height: 100vh;
@@ -113,6 +118,16 @@
                             <input type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" title='Voter' align center value="Voter">
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="row">
+                <div id="content2">
+                    <div class="col-12">
+                        <div class="mt-1 pt-1"><b>Attention le lien de suppression du sondage est à conserver précieusement</b></div>
+                        <div class="mt-1 pt-1">Supprimer le sondage : Sondages/SondageSuppression?idSondage=@Model.Sondage.IdSondage&CodeSuppression=@Model.Sondage.CodeSuppression</div>
+                        <div class="mt-1 pt-1">Page de vote du sondage : Sondages/SondageVote?idSondage=@Model.Sondage.IdSondage</div>
+                        <div class="mt-1 pt-1">Résultats du sondage : Sondages/SondageResultat?idSondage=@Model.Sondage.IdSondage</div>
+                    </div>
                 </div>
             </div>
         </div>

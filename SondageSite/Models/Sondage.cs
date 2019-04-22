@@ -76,6 +76,9 @@ namespace SondageSite.Models
             // Debug.Write("ok");
             return insertedID;
 
+
+
+
             /*
 
                         public class StudentDBHandle
@@ -134,6 +137,59 @@ namespace SondageSite.Models
                                    fourthInsert.Parameters.AddWithValue("@NbEx", book.NbEx);
                                    fourthInsert.ExecuteNonQuery();
                                    connection.Close();*/
+        }
+
+        public int CountVotants()
+        {
+            SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
+            connection.Open();
+
+            SqlCommand recupererSondage = connection.CreateCommand();
+            recupererSondage.CommandText =
+                "SELECT COUNT(distinct v.IdVotant) " +
+                "FROM [Option] o, Vote v " +
+                "WHERE o.IdSondage = @IdSondage " +
+                "AND o.IdOption = v.IdOption";
+            // Add parameter values
+            recupererSondage.Parameters.AddWithValue("@IdSondage", this.IdSondage);
+            int count = (int)recupererSondage.ExecuteScalar();
+
+            return count;
+
+        }
+
+        public int CountVotes()
+        {
+            SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
+            connection.Open();
+
+            SqlCommand recupererSondage = connection.CreateCommand();
+            recupererSondage.CommandText =
+                "SELECT COUNT(*) " +
+                "FROM [Option] o, Vote v " +
+                "WHERE o.IdSondage = @IdSondage " +
+                "AND o.IdOption = v.IdOption";
+            // Add parameter values
+            recupererSondage.Parameters.AddWithValue("@IdSondage", this.IdSondage);
+            int count = (int)recupererSondage.ExecuteScalar();
+
+            return count;
+
+        }
+
+        public void DesactiverSondage()
+        {
+            SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
+            connection.Open();
+
+            SqlCommand desactivationSondage = connection.CreateCommand();
+            desactivationSondage.CommandText = "UPDATE Sondage SET Desactiver = 'true' WHERE IdSondage = @IdSondage";
+            // Add parameter values
+            desactivationSondage.Parameters.AddWithValue("@IdSondage", this.IdSondage);
+            desactivationSondage.ExecuteNonQuery();
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            this.Desactiver = true;
         }
     }
 }

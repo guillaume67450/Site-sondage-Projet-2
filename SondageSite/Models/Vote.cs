@@ -24,14 +24,14 @@ namespace SondageSite.Models
             connection.Open();
 
             SqlCommand ajoutVote = connection.CreateCommand();
-            ajoutVote.CommandText = "INSERT INTO Vote (IdVotant, IdOption) OUTPUT INSERTED.IdVote VALUES (@IdVotant,@IdOption)";
+            ajoutVote.CommandText = "INSERT INTO Vote (IdVotant, IdOption) VALUES (@IdVotant,@IdOption)";
             // Add parameter values
             ajoutVote.Parameters.AddWithValue("@IdVotant", vote.IdVotant);
             ajoutVote.Parameters.AddWithValue("@IdOption", vote.IdOption);
-            // Get the inserted id
-            //int insertedID = (int)ajoutVote.ExecuteScalar();
+            ajoutVote.ExecuteNonQuery();
             if (connection.State == ConnectionState.Open)
                 connection.Close();
+            // Commentaire utile en cas de deboggage :
             // Debug.Write("ok");
             //return insertedID;
         }
