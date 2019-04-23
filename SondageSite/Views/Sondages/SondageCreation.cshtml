@@ -4,14 +4,14 @@
 }
 
 <!DOCTYPE html>
-
+<!--vue pour la création du sondage, avec un formulaire déclenchant l'action "AjoutSondage" et envoyant les valeurs question, reponse1, reponse2, reponse3, reponse4, codeSecret -->
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>SondageCreation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <!--background-image: url(../../Content/arriere-plan.jpg);-->
+
 
     <style>
         #content {
@@ -81,10 +81,19 @@
                                 <INPUT type="text" name="reponse4" class="form-control">
                             </div>
                         </div>
+                        <div class="row mb-1">
+                            <div class="col-3 my-1">
+                                Code Secret :
+                            </div><!-- le code secret sert uniquement sur la page suivante, si l'utilsateur le renseigne ça permet à son sondage de ne pas être supprimé par qui que ce soit d'autre-->
+                            <div class="col">
+                                <INPUT type="text" name="codeSecret" class="form-control">
+                            </div>
+                        </div>
                         <div class="form-group form-check my-4">
                             <input type="checkbox" class="form-check-input" name="reponseMultiple" value="true">
                             <label class="form-check-label">Autoriser les réponses multiples</label>
                         </div>
+
                         <div class="d-flex justify-content-center">
                             <input type="submit" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" title='Créer votre sondage' value="CreerSondage">
                         </div>

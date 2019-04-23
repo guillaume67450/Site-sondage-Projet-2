@@ -33,7 +33,7 @@ namespace SondageSite.Models
             }
         }
 
-        public static List<Option> ChargerOptionsDepuisBDD(int idSondage)
+        public static List<Option> ChargerOptionsDepuisBDD(int idSondage) // charger les questions avec idSondage
         {
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
@@ -42,27 +42,27 @@ namespace SondageSite.Models
             recupererOption.CommandText = "SELECT * FROM [Option] WHERE IdSondage = @IdSondage";
             // Add parameter values
             recupererOption.Parameters.AddWithValue("@IdSondage", idSondage);
-            SqlDataReader reader = recupererOption.ExecuteReader();
+            SqlDataReader reader = recupererOption.ExecuteReader(); //ExecuteReader est utilisé pour récupérer un jeu d'enregistrement et retourne un objet DataReader 
 
-            List<Option> optionList = new List<Option>();
+            List<Option> optionList = new List<Option>(); // on a ainsi notre liste de questions comme objet prêt à accueillir les valeurs
 
-            while (reader.Read())
+            while (reader.Read()) // tant qu'on peut avancer dans le jeu d'enregistrements, on affecte les valeurs suivantes aux variables grâce au jeu d'enregistrement 
             {
                 int id = (int)reader["IdOption"];
                 string reponseTxt = (string)reader["ReponseTxt"];
                 int nbVotes = (int)reader["NbVotes"];
-                Option monOption = new Option(id, idSondage, reponseTxt, nbVotes);
-                optionList.Add(monOption);
+                Option monOption = new Option(id, idSondage, reponseTxt, nbVotes); // monOption prend les valeurs stockées dans les variables créées
+                optionList.Add(monOption); //on ajoute à monOption
             }
 
             if (connection.State == ConnectionState.Open)
-                connection.Close();
+                connection.Close(); // si la connextion est encore ouverte, on la referme
 
-            return optionList;
+            return optionList; // on retourne la liste des questions correspondant à IdSondage (avec leur IdOption, ReponseTxt et NbVotes et une Id propre)
         }
 
         public static void InsererOptionEnBdd(int idSondage, string reponseTxt)
-        {
+        {  // déclaration d'InsererOptionEnBdd comme membre statique de la classe Option, ainsi les using SondageSite.Models peuvent utiliser Option.InsererOptionEnBdd avec ses paramètres
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
 
@@ -70,9 +70,9 @@ namespace SondageSite.Models
             ajoutReponse.CommandText = "INSERT INTO [Option] (ReponseTxt, IdSondage, NbVotes) OUTPUT INSERTED.IdOption VALUES (@Reponse, @IdSondage, @NbVotes)";
             ajoutReponse.Parameters.AddWithValue("@Reponse", reponseTxt);
             ajoutReponse.Parameters.AddWithValue("@IdSondage", idSondage);
-            ajoutReponse.Parameters.AddWithValue("@NbVotes", 0);
+            ajoutReponse.Parameters.AddWithValue("@NbVotes", 0); // on initialise le nombre de votes à 0
             // Get the inserted id
-            int insertedID = (int)ajoutReponse.ExecuteScalar();
+            int insertedID = (int)ajoutReponse.ExecuteScalar(); //ExecuteScalar car récupère une valeur unitaire;
             if (connection.State == ConnectionState.Open)
                 connection.Close();
         }

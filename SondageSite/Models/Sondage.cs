@@ -29,40 +29,40 @@ namespace SondageSite.Models
             ChoixMultiple = choixMultiple;
         }
 
-        public static Sondage ChargerSondageDepuisBDD(int idSondage)
+        public static Sondage ChargerSondageDepuisBDD(int idSondage) // charger le sondage avec idSondage
         {
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
 
             SqlCommand recupererSondage = connection.CreateCommand();
-            recupererSondage.CommandText = "SELECT * FROM Sondage WHERE IdSondage = @IdSondage";
+            recupererSondage.CommandText = "SELECT * FROM Sondage WHERE IdSondage = @IdSondage"; // on récupère l'ID
             // Add parameter values
             recupererSondage.Parameters.AddWithValue("@IdSondage", idSondage);
-            SqlDataReader reader = recupererSondage.ExecuteReader();
+            SqlDataReader reader = recupererSondage.ExecuteReader(); // envoie la commande recuperSondage à la connection grâce au dataReader
 
-            // On avance sur la première ligne
+            // On avance sur la première ligne du dataReader
             reader.Read();
 
-            // IdSondage
+            // on stocke tous les enregistrements dans des variables
             string question = (string)reader["Question"];
             string codeSuppression = (string)reader["CodeSuppression"];
             bool desactiver = (bool)reader["Desactiver"];
             DateTime dateCreation = (DateTime)reader["DateCreation"];
             bool choixMultiple = (bool)reader["ChoixMultiple"];
 
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
+            if (connection.State == ConnectionState.Open) 
+                connection.Close(); // si la connection est ouverte, on la referme
 
             Sondage monSondage = new Sondage(idSondage, question, codeSuppression, desactiver, dateCreation, choixMultiple);
-            return monSondage;
+            return monSondage; // on renvoie mon sondage comme valeur
         }
 
         public static int InsererSondageEnBdd(string question, string codeSuppression, bool desactiver, bool choixMultiple)
-        {
+        {   // déclaration d'InsererSondageEnBdd comme membre statique de la classe Sondage, ainsi les using SondageSite.Models peuvent utiliser Sondage.InsererSondageEnBdd avec ses paramètres
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
 
-            SqlCommand ajoutQuestion = connection.CreateCommand();
+            SqlCommand ajoutQuestion = connection.CreateCommand(); // création de la commande ajoutQuestion
             ajoutQuestion.CommandText = "INSERT INTO Sondage (Question, CodeSuppression, Desactiver, DateCreation, ChoixMultiple) OUTPUT INSERTED.IdSondage VALUES (@Question, @CodeSuppression, @Desactiver, GETDATE(), @ChoixMultiple)";
             // Add parameter values
             ajoutQuestion.Parameters.AddWithValue("@Question", question);
@@ -70,7 +70,7 @@ namespace SondageSite.Models
             ajoutQuestion.Parameters.AddWithValue("@Desactiver", desactiver);
             ajoutQuestion.Parameters.AddWithValue("@ChoixMultiple", choixMultiple);
             // Get the inserted id
-            int insertedID = (int)ajoutQuestion.ExecuteScalar();
+            int insertedID = (int)ajoutQuestion.ExecuteScalar(); //ExecuteScalar car récupère une valeur unitaire;
             if (connection.State == ConnectionState.Open)
                 connection.Close();
             // Debug.Write("ok");
@@ -79,7 +79,7 @@ namespace SondageSite.Models
 
 
 
-            /*
+            /* exemple trouvé sur internet : https://www.completecsharptutorial.com/mvc-articles/insert-update-delete-in-asp-net-mvc-5-without-entity-framework.php
 
                         public class StudentDBHandle
                     {
@@ -139,8 +139,8 @@ namespace SondageSite.Models
                                    connection.Close();*/
         }
 
-        public int CountVotants()
-        {
+        public int CountVotants() 
+        {  // commande SQL pour compter les votants
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
 
@@ -152,14 +152,14 @@ namespace SondageSite.Models
                 "AND o.IdOption = v.IdOption";
             // Add parameter values
             recupererSondage.Parameters.AddWithValue("@IdSondage", this.IdSondage);
-            int count = (int)recupererSondage.ExecuteScalar();
+            int count = (int)recupererSondage.ExecuteScalar(); // récupère une valeur unitaire (à n'utiliser que pour les valeurs uniques)
 
-            return count;
+            return count; // on retourne la valeur du count pour qu'elle soit affichée dans la vue résultat (sous la forme de @Model.Sondage.CountVotants())
 
         }
 
         public int CountVotes()
-        {
+        { // même processus que pour les votants mais avec les votes
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
 
@@ -178,7 +178,7 @@ namespace SondageSite.Models
         }
 
         public void DesactiverSondage()
-        {
+        { // fonction qui ne retournera rien, publique afin qu'on puisse y accéder depuis le controller
             SqlConnection connection = new SqlConnection(DataAccess.ChaineConnexionBDD);
             connection.Open();
 
@@ -189,7 +189,7 @@ namespace SondageSite.Models
             desactivationSondage.ExecuteNonQuery();
             if (connection.State == ConnectionState.Open)
                 connection.Close();
-            this.Desactiver = true;
+            this.Desactiver = true; // on lui indique que Sondage.Desactiver = true
         }
     }
 }
